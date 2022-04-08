@@ -11,12 +11,12 @@ defmodule Glup.Users do
 
   @doc """
   Returns the list of user.
-  
+
   ## Examples
-  
+
       iex> list_user()
       [%User{}, ...]
-  
+
   """
   def list_user do
     Repo.all(User)
@@ -24,31 +24,31 @@ defmodule Glup.Users do
 
   @doc """
   Gets a single user.
-  
+
   Raises `Ecto.NoResultsError` if the User does not exist.
-  
+
   ## Examples
-  
+
       iex> get_user!(123)
       %User{}
-  
+
       iex> get_user!(456)
       ** (Ecto.NoResultsError)
-  
+
   """
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
   Creates a user.
-  
+
   ## Examples
-  
+
       iex> create_user(%{field: value})
       {:ok, %User{}}
-  
+
       iex> create_user(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def create_user(attrs \\ %{}) do
     %User{}
@@ -58,15 +58,15 @@ defmodule Glup.Users do
 
   @doc """
   Updates a user.
-  
+
   ## Examples
-  
+
       iex> update_user(user, %{field: new_value})
       {:ok, %User{}}
-  
+
       iex> update_user(user, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def update_user(%User{} = user, attrs) do
     user
@@ -76,15 +76,15 @@ defmodule Glup.Users do
 
   @doc """
   Deletes a User.
-  
+
   ## Examples
-  
+
       iex> delete_user(user)
       {:ok, %User{}}
-  
+
       iex> delete_user(user)
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def delete_user(%User{} = user) do
     Repo.delete(user)
@@ -92,18 +92,18 @@ defmodule Glup.Users do
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
-  
+
   ## Examples
-  
+
       iex> change_user(user)
       %Ecto.Changeset{source: %User{}}
-  
+
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
 
-  # This function validates user data in th login request
+  # This function validates user data in the login request
   def validate_user(conn) do
     body_params = conn.body_params
     user_input_name = body_params["username"]
@@ -150,7 +150,7 @@ defmodule Glup.Users do
     token
   end
 
-  # This function validates token in the TEST API and any other API that uses token
+  # This function validates the token in the TEST API and any other API that uses the token.
   def validate_token(token) do
     case Token.verify_and_validate(token) do
       {:ok, claims} ->
