@@ -12,16 +12,19 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ### 👨‍🎓 Sign Up
 
-Use POST request to `http://localhost:4000/signup` with following request body
+Use a POST request to `http://localhost:4000/signup` with following request body.
+```
   {"username": "sample user", "password": "sample pwd"}
+```
 
-this returns 200 OK with following body
-
+this returns `200 OK` with following body.
+```
   {
     "attribute": "",
     "data": {},
     "status_code": "SUCCESS"
   }
+```
 
 ### 🧙 Login
 
