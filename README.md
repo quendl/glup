@@ -55,7 +55,7 @@ If it is a valid token, this returns `200 OK` with following message in the body
 ```
 "<Test> Success. Authenticated"
 ```
-If the token is invlaid, it returns `401` status with following response body.
+If the token is invalid, it returns `401` status with following response body.
 
 ```
   {
