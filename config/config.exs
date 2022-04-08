@@ -1,4 +1,4 @@
-# This file is responsible for configuring your application
+# This file is responsible for configuring our application
 # and its dependencies with the aid of the Config module.
 #
 # This configuration file is loaded before any dependency and
@@ -17,7 +17,7 @@ config :glup, GlupWeb.Endpoint,
   pubsub_server: Glup.PubSub,
   live_view: [signing_salt: "HZrpMhCT"]
 
-# Configures the mailer
+# Configurate the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
 # locally. You can see the emails in your browser, at "/dev/mailbox".

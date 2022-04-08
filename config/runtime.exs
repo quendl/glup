@@ -11,7 +11,8 @@ if Config.config_env() == :dev do
   DotenvParser.load_file(".env")
 end
 
-# load the database variables
+# load the database variables from the system / .env files
+# this is prepared to be open source - so we don't want anyone to see our database tokens/credentials ...
 config :glup,
   env: Config.config_env(),
   username: System.fetch_env!("DATABASE_USERNAME"),
@@ -19,7 +20,7 @@ config :glup,
   hostname: System.fetch_env!("DATABASE_HOSTNAME"),
   database: System.fetch_env!("DATABASE_DATABASE")
 
-# Configure your database
+# Configurating the database
 config :glup, Glup.Repo,
   username: System.fetch_env!("DATABASE_USERNAME"),
   password: System.fetch_env!("DATABASE_PASSWORD"),
@@ -35,10 +36,10 @@ end
 
 if config_env() == :prod do
   database_url =
-    System.get_env("DATABASE_URL") ||
+    System.get_env("DATABASE_DATABASE") ||
       raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
+      environment variable DATABASE_DATABASE (URL) is missing.
+      For example: db://USER:PASS@HOST/DATABASE
       """
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
