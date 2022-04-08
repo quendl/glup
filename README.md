@@ -25,29 +25,39 @@ this returns 200 OK with following body
 
 ### 🧙 Login
 
-Use POST request to `http://localhost:4000/login` with following request body
-  {"username": "sample user", "password": "sample pwd"}
+Use a POST request to `http://localhost:4000/login` with following request body.
+```
+{"username": "sample user", "password": "sample pwd"}
+```
+this returns `200 OK`  with the following body.
 
-this returns 200 OK with following body
-
+```
   {
     "attribute": "",
     "data": {
         "jwt": "eyJhbGc ... .ey......RigVdGWQCMu ....",
-        "username": "hasitha"
+        "username": "testinguser"
     },
     "status_code": "SUCCESS"
 }
+```
 
 ### 🧤 test
 
-Use GET request to `http://localhost:4000/test` with following request header
+Use a GET request to `http://localhost:4000/test` with the following request header. 
+```
   {"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJKb2tlbiIsImV4cCI6MTY0NzM5ODgwMSwiaWF0IjoxNjQ3Mzk1MjAxLCJpc3MiOiJKb2tlbiIsImp0aSI6IjJyZWJpZDg0ZDU0NzZsMzA2NDAwMDBwNCIsIm5iZiI6MTY0NzM5NTIwMSwidXNlcm5hbWUiOiJoYXNpdGhhIn0.RigVdGWQCMuhh9moEG9PYcH4C0thJe7m7SLnyrOZUeg"}
+```
+If it is a valid token, this returns `200 OK` with following message in the body: 
+```
+"<Test> Success. Authenticated"
+```
+If the token is invlaid, it returns `401` status with following response body.
 
-If it is a valid token, this returns 200 OK with following message in the body: "Test Success. Authenticated"
-If the token is invlaid, it returns 401 status with following response body
+```
   {
     "attribute": "",
     "data": {},
     "status_code": "UNAUTHORIZED"
   }
+```
