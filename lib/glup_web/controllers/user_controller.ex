@@ -56,18 +56,18 @@ defmodule GlupWeb.UserController do
   end
 
   # Signup functionality is handled here
-  def signup(conn, params) do
-    signed_pwd = Users.sign_pwd(params["password"])
+  def signup(conn, %{"email" => _e, "username" => _u, "password" => pass} = params) do
+    signed_pwd = Users.sign_pwd(pass)
+    user_params = Map.put(params, "password", signed_pwd)
 
-    user_params = %{
-      "username" => params["username"],
-      "password" => signed_pwd
-    }
-
-    with {:ok, %User{} = _user} <- Users.create_user(user_params) do
+    with {:ok, %User{username: username, email: email} = user} <- Users.create_user(user_params) do
       conn
       |> put_status(:created)
-      |> render("status.json", %{status_code: "SUCCESS", attribute: ""})
+      |> render("status.json", %{
+        status_code: "SUCCESS",
+        attribute: "",
+        data: %{username: username, email: email}
+      })
     end
   end
 

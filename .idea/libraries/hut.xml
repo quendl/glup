@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="hut" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/hut/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/hut/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/hut/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/hut/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/hut/src" />
+      <root url="file://$PROJECT_DIR$/deps/hut/src" />
+    </SOURCES>
+  </library>
+</component>

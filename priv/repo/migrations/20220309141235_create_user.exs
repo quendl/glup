@@ -5,6 +5,7 @@ defmodule Glup.Repo.Migrations.CreateUser do
     create table(:user) do
       add :username, :string
       add :password, :string
+      add :email, :string
 
       timestamps()
     end

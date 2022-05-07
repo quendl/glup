@@ -50,10 +50,13 @@ defmodule Glup.MixProject do
       {:jason, "~> 1.2"},
       {:cors_plug, "~> 2.0"},
       {:plug_cowboy, "~> 2.5"},
+      # maybe remove this
       {:myxql, ">= 0.4.0"},
       {:pbkdf2_elixir, "~> 1.0"},
       {:joken, "~> 2.0-rc0"},
-      {:dotenv_parser, "~> 2.0"}
+      {:dotenv_parser, "~> 2.0"},
+      {:gen_smtp, "~> 1.1.1"},
+      {:hackney, "~> 1.18.0"}
     ]
   end
 
