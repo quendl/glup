@@ -3,8 +3,11 @@ defmodule GlupWeb.UserController do
 
   alias Glup.Users
   alias Glup.Users.User
+  alias Phoenix.PubSub
 
   action_fallback GlupWeb.FallbackController
+
+  @user_topic "user_updates"
 
   def index(conn, _params) do
     user = Users.list_user()
@@ -57,10 +60,16 @@ defmodule GlupWeb.UserController do
 
   # Signup functionality is handled here
   def signup(conn, %{"email" => _e, "username" => _u, "password" => pass} = params) do
+    # Fetch in the background
+    location = Task.async(fn -> GlupWeb.Location.Info.user_location(conn) end)
     signed_pwd = Users.sign_pwd(pass)
     user_params = Map.put(params, "password", signed_pwd)
 
     with {:ok, %User{username: username, email: email} = user} <- Users.create_user(user_params) do
+      user = Map.put(user, :location, Task.await(location, :infinity))
+      # Publish event to phoenix pub sub
+      PubSub.broadcast(Glup.PubSub, @user_topic, {:created, user})
+
       conn
       |> put_status(:created)
       |> render("status.json", %{

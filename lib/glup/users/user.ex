@@ -6,6 +6,7 @@ defmodule Glup.Users.User do
     field :password, :string
     field :username, :string
     field :email, :string
+    field :location, :string, virtual: true
 
     timestamps()
   end

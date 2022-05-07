@@ -24,10 +24,6 @@ config :glup, GlupWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :glup, Glup.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -48,12 +44,6 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :joken, default_signer: "secret"
-
-# Configure Mailgun
-config :glup, Glup.Mailer,
-  adapter: Swoosh.Adapters.Mailgun,
-  api_key: "cc17b3204bd8500785209698e450239d-02fa25a3-4bca7c7d",
-  domain: "https://api.mailgun.net/v3/sandboxd2567aed406b4a318140946af8d484db.mailgun.org"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

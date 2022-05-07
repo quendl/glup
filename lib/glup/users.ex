@@ -8,9 +8,6 @@ defmodule Glup.Users do
 
   alias Glup.Users.User
   alias Glup.Token
-  alias Phoenix.PubSub
-
-  @pubsub_name "users_pubsub"
 
   @doc """
   Returns the list of user.
@@ -54,13 +51,9 @@ defmodule Glup.Users do
 
   """
   def create_user(attrs \\ %{}) do
-    {:ok, user} =
-      %User{}
-      |> User.changeset(attrs)
-      |> Repo.insert()
-
-    PubSub.broadcast(Glup.PubSub, "user_updates", {:created, user})
-    {:ok, user}
+    %User{}
+    |> User.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """

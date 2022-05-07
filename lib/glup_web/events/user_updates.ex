@@ -4,7 +4,7 @@ defmodule GlupWeb.Events.User do
   alias Phoenix.PubSub
   alias GlupWeb.Mails.UserMails
 
-  @topic ""
+  @topic "user_updates"
 
   # Client
 
@@ -15,8 +15,8 @@ defmodule GlupWeb.Events.User do
   # Server (callbacks)
 
   @impl true
-  def init(stack) do
-    PubSub.subscribe(Glup.PubSub, "user_updates")
+  def init(_params) do
+    PubSub.subscribe(Glup.PubSub, @topic)
     Logger.info("User Events Subscriber started successfully")
     {:ok, nil}
   end
@@ -34,6 +34,6 @@ defmodule GlupWeb.Events.User do
   @impl true
   def handle_info(_, state) do
     Logger.info("Event didn't match")
-    :ok
+    {:noreply, state}
   end
 end
