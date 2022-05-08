@@ -11,9 +11,22 @@ defmodule GlupWeb.Mails.UserMails do
     new_email(
       to: {name, email},
       from: {"Glup", from_email()},
-      subject: "Welcome to  Glup.",
-      html_body: "<strong>Thanks for joining from #{location}!</strong>",
-      text_body: "Thanks for joining!"
+      subject: "Welcome to Glup.",
+      html_body:
+      "Thanks for registering a new account at Glup #{name}, you are now able to login to your account.
+
+      <p><a href='https://google.com'><button>Login</button></a></p>
+
+      <hr>
+      Here are your account details:
+      <p><strong>Username:</strong> #{name}</p>
+      <p><strong>Location:</strong> #{location}</p>
+
+      <hr>
+
+      <p><a href='https://google.com'>Privacy Policy</a></p> <p><a href='https://google.com'>Support</a></p>
+      ",
+      text_body: "Thanks for joining Glup!"
     )
     |> Glup.Mailer.deliver_now!()
   end

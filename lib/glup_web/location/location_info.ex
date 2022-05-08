@@ -35,7 +35,6 @@ defmodule GlupWeb.Location.Info do
       ip = to_string(:inet_parse.ntoa(remote_ip))
 
       if ip == "127.0.0.1" do
-        # let default be Austria's IP
         "62.47.244.0"
       else
         ip
