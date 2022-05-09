@@ -15,7 +15,9 @@ defmodule Glup.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Glup.PubSub},
       # Start the Endpoint (http/https)
-      GlupWeb.Endpoint
+      GlupWeb.Endpoint,
+      # Events Supervisor
+      {GlupWeb.Events.Supervisor, [nil]}
       # Start a worker by calling: Glup.Worker.start_link(arg)
       # {Glup.Worker, arg}
     ]

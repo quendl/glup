@@ -5,6 +5,8 @@ defmodule Glup.Users.User do
   schema "user" do
     field :password, :string
     field :username, :string
+    field :email, :string
+    field :location, :string, virtual: true
 
     timestamps()
   end
@@ -12,7 +14,7 @@ defmodule Glup.Users.User do
   # This function does the validations before inserting data into DB
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :password])
+    |> cast(attrs, [:username, :email, :password])
     |> validate_required([:username, :password])
     |> unique_constraint(:name,
       name: :user_username_index,

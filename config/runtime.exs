@@ -18,7 +18,8 @@ config :glup,
   username: System.fetch_env!("DATABASE_USERNAME"),
   password: System.fetch_env!("DATABASE_PASSWORD"),
   hostname: System.fetch_env!("DATABASE_HOSTNAME"),
-  database: System.fetch_env!("DATABASE_DATABASE")
+  database: System.fetch_env!("DATABASE_DATABASE"),
+  sand_box_email: System.fetch_env!("MAIL_GUN_SANDBOX_EMAIL")
 
 # Configurating the database
 config :glup, Glup.Repo,
@@ -28,6 +29,11 @@ config :glup, Glup.Repo,
   database: System.fetch_env!("DATABASE_DATABASE"),
   show_sensitive_data_on_connection_error: false,
   pool_size: 10
+
+config :glup, Glup.Mailer,
+  adapter: Bamboo.MailgunAdapter,
+  api_key: System.fetch_env!("MAIL_GUN_API_KEY"),
+  domain: System.fetch_env!("MAIL_GUN_DOMAIN")
 
 # Start the phoenix server if environment is set and running in a release
 if System.get_env("PHX_SERVER") && System.get_env("RELEASE_NAME") do
