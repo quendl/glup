@@ -2,6 +2,7 @@ defmodule GlupWeb.Router do
   use GlupWeb, :router
 
   pipeline :api do
+    plug GlupWeb.Plugs.RateLimiter
     plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
     plug GlupWeb.Plugs.AuthPlug

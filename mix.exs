@@ -55,7 +55,8 @@ defmodule Glup.MixProject do
       {:pbkdf2_elixir, "~> 1.0"},
       {:joken, "~> 2.0-rc0"},
       {:dotenv_parser, "~> 2.0"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:hammer, "~> 6.0"}
     ]
   end
 

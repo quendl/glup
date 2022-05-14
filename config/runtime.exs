@@ -35,6 +35,9 @@ config :glup, Glup.Mailer,
   api_key: System.fetch_env!("MAIL_GUN_API_KEY"),
   domain: System.fetch_env!("MAIL_GUN_DOMAIN")
 
+config :hammer,
+  backend: {Hammer.Backend.ETS, [expiry_ms: 60_000 * 60 * 4, cleanup_interval_ms: 60_000 * 10]}
+
 # Start the phoenix server if environment is set and running in a release
 if System.get_env("PHX_SERVER") && System.get_env("RELEASE_NAME") do
   config :glup, GlupWeb.Endpoint, server: true

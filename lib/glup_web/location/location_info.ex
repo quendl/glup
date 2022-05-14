@@ -30,7 +30,7 @@ defmodule GlupWeb.Location.Info do
     "http://api.ipstack.com/#{ip}?access_key=969d43bf82dfb8697d28a33c24cb0b13"
   end
 
-  defp ip(conn) do
+  def ip(conn) do
     with %Plug.Conn{remote_ip: remote_ip} <- conn do
       ip = to_string(:inet_parse.ntoa(remote_ip))
 
