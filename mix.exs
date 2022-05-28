@@ -56,7 +56,8 @@ defmodule Glup.MixProject do
       {:joken, "~> 2.0-rc0"},
       {:dotenv_parser, "~> 2.0"},
       {:httpoison, "~> 1.8"},
-      {:hammer, "~> 6.0"}
+      {:hammer, "~> 6.0"},
+      {:corsica, "~> 1.2"}
     ]
   end
 
