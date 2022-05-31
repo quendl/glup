@@ -11,7 +11,7 @@ defmodule Glup.Users.User do
     timestamps()
   end
 
-  # This function does the validations before inserting data into DB
+  # This function does the validations before inserting data into the database
   # return if user exists with the same username
   def changeset(user, attrs) do
     user
