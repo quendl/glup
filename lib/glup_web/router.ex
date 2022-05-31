@@ -17,6 +17,7 @@ defmodule GlupWeb.Router do
 
     # CORS
     options "/login", UserController, :login
+    options "/signup", UserController, :signup
     options "/test", UserController, :test
   end
 end

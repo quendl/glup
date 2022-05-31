@@ -13,7 +13,7 @@ defmodule GlupWeb.Mails.UserMails do
       from: {"Glup", from_email()},
       subject: "Welcome to Glup.",
       html_body:
-      "Thanks for registering a new account at Glup #{name}, you are now able to login to your account.
+        "Thanks for registering a new account at Glup #{name}, you are now able to login to your account.
 
       <p><a href='https://google.com'><button>Login</button></a></p>
 

@@ -12,6 +12,7 @@ defmodule Glup.Users.User do
   end
 
   # This function does the validations before inserting data into DB
+  # return if user exists with the same username
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :email, :password])

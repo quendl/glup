@@ -14,6 +14,7 @@ defmodule GlupWeb.UserController do
     render(conn, "index.json", user: user)
   end
 
+  # Function to create the user
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Users.create_user(user_params) do
       conn
@@ -28,6 +29,7 @@ defmodule GlupWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
+  # Function to update the user
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
 
@@ -36,6 +38,7 @@ defmodule GlupWeb.UserController do
     end
   end
 
+  # Function to delete the user
   def delete(conn, %{"id" => id}) do
     user = Users.get_user!(id)
 
