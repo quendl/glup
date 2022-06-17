@@ -48,7 +48,7 @@ defmodule Glup.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:cors_plug, "~> 2.0"},
+      {:cors_plug, "~> 3.0"},
       {:plug_cowboy, "~> 2.5"},
       # maybe remove this
       {:myxql, ">= 0.4.0"},
