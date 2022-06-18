@@ -30,11 +30,13 @@ config :glup, Glup.Repo,
   show_sensitive_data_on_connection_error: false,
   pool_size: 10
 
+# Configuration the mailer
 config :glup, Glup.Mailer,
   adapter: Bamboo.MailgunAdapter,
   api_key: System.fetch_env!("MAIL_GUN_API_KEY"),
   domain: System.fetch_env!("MAIL_GUN_DOMAIN")
 
+# Configurating the rate limiter
 config :hammer,
   backend: {Hammer.Backend.ETS, [expiry_ms: 60_000 * 60 * 4, cleanup_interval_ms: 60_000 * 10]}
 
