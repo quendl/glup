@@ -4,8 +4,8 @@ defmodule Glup.MixProject do
   def project do
     [
       app: :glup,
-      version: "0.1.0",
-      elixir: "~> 1.12",
+      version: "1.5.0",
+      elixir: "~> 1.13.3",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
