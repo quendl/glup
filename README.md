@@ -14,7 +14,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Use a POST request to `http://localhost:4000/signup` with following request body.
 ```
-  {"username": "sample user", "password": "sample pwd"}
+  {"username": "sample user", "password": "sample pwd", "email": "sample@email.com}
 ```
 
 this returns `200 OK` with following body.
