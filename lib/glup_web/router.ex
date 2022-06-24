@@ -3,7 +3,6 @@ defmodule GlupWeb.Router do
 
   pipeline :api do
     plug GlupWeb.Plugs.RateLimiter
-    plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
     plug GlupWeb.Plugs.AuthPlug
   end
@@ -15,9 +14,5 @@ defmodule GlupWeb.Router do
     post "/signup", UserController, :signup
     get "/test", UserController, :test
 
-    # CORS
-    options "/login", UserController, :login
-    options "/signup", UserController, :signup
-    options "/test", UserController, :test
   end
 end
