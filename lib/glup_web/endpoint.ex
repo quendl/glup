@@ -10,6 +10,14 @@ defmodule GlupWeb.Endpoint do
     signing_salt: "J4fMyINJ"
   ]
 
+  plug(Corsica,
+  max_age: 600,
+  origins: "*",
+  allow_headers: ["accept", "content-type", "authorization"],
+  allow_methods: ["GET", "POST", "DELETE"],
+  allow_credentials: true
+  )
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
