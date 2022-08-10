@@ -1,4 +1,4 @@
-defmodule GulpWeb.CORS do
+defmodule GlupWeb.CORS do
   use Corsica.Router,
     origins: "*",
     allow_headers: ["content-type"],
