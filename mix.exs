@@ -57,7 +57,6 @@ defmodule Glup.MixProject do
       {:httpoison, "~> 1.8"},
       {:hammer, "~> 6.0"},
       {:corsica, "~> 1.2"}
-
     ]
   end
 

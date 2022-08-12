@@ -19,7 +19,8 @@ config :glup,
   password: System.fetch_env!("DATABASE_PASSWORD"),
   hostname: System.fetch_env!("DATABASE_HOSTNAME"),
   database: System.fetch_env!("DATABASE_DATABASE"),
-  sand_box_email: System.fetch_env!("MAIL_GUN_SANDBOX_EMAIL")
+  sand_box_email: System.fetch_env!("MAIL_GUN_SANDBOX_EMAIL"),
+  access_key: System.fetch_env!("ACCESS_KEY")
 
 # Configurating the database
 config :glup, Glup.Repo,

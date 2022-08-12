@@ -26,8 +26,9 @@ defmodule GlupWeb.Location.Info do
   end
 
   defp url(ip) do
+    access_key = Application.get_env(:glup, :access_key)
     # move access key to config
-    "http://api.ipstack.com/#{ip}?access_key=969d43bf82dfb8697d28a33c24cb0b13"
+    "http://api.ipstack.com/#{ip}?access_key=#{access_key}"
   end
 
   def ip(conn) do

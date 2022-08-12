@@ -54,6 +54,7 @@ defmodule GlupWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug GlupWeb.CORS # cors are here
+  # cors are here
+  plug GlupWeb.CORS
   plug GlupWeb.Router
 end
