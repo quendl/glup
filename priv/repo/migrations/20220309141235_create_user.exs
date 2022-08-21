@@ -11,5 +11,6 @@ defmodule Glup.Repo.Migrations.CreateUser do
     end
 
     create unique_index("user", [:username])
+    create unique_index("user", [:email])
   end
 end

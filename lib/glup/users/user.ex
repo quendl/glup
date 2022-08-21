@@ -21,5 +21,9 @@ defmodule Glup.Users.User do
       name: :user_username_index,
       message: "USER_EXISTS_WITH_SAME_USERNAME"
     )
+    |> unique_constraint(:email,
+    name: :user_email_index,
+    message: "USER_EXISTS_WITH_SAME_EMAIL"
+  )
   end
 end
