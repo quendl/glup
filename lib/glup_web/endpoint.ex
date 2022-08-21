@@ -10,13 +10,14 @@ defmodule GlupWeb.Endpoint do
     signing_salt: "J4fMyINJ"
   ]
 
-  # plug(Corsica,
-  # max_age: 600,
-  # origins: "*",
-  # allow_headers: ["accept", "content-type", "authorization"],
-  # allow_methods: ["GET", "POST", "DELETE"],
-  # allow_credentials: true
-  # )
+  plug(Corsica,
+    max_age: 600,
+    origins: "http://localhost:3000",
+    allow_headers: ["Content-Type", "Authorization"],
+    allow_methods: ["GET", "POST"],
+    allow_credentials: true,
+    log: [rejected: :error, invalid: :warn, accepted: :debug]
+  )
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
@@ -54,7 +55,5 @@ defmodule GlupWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  # cors are here
-  plug GlupWeb.CORS
   plug GlupWeb.Router
 end
