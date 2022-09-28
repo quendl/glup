@@ -34,3 +34,4 @@ npm-debug.log
 
 # config files
 .env
+config/*.secret.exs
