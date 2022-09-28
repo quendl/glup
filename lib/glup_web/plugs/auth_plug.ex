@@ -4,9 +4,15 @@ defmodule GlupWeb.Plugs.AuthPlug do
 
   use GlupWeb, :controller
 
+  @moduledoc """
+  This module handles the authentication of the user.
+
+  - logging in (with jwt tokens)
+  - authorization, running DB queries etc.
+  """
+
   def init(options), do: options
 
-  # this is the plug which handles authentication
   def call(conn, _opts) do
     allowed_actions = ["/signup", "/signup/"]
 
@@ -14,6 +20,9 @@ defmodule GlupWeb.Plugs.AuthPlug do
       Enum.member?(allowed_actions, conn.request_path) ->
         conn
 
+      @doc """
+      Validate the users access with JWT tokens, return an error if the user is not authorized.
+      """
       conn.request_path == "/login" or conn.request_path == "/login/" ->
         case Users.validate_user(conn) do
           {:ok, jwt, username} ->
