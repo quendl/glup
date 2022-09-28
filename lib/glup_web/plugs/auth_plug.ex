@@ -20,9 +20,7 @@ defmodule GlupWeb.Plugs.AuthPlug do
       Enum.member?(allowed_actions, conn.request_path) ->
         conn
 
-      @doc """
-      Validate the users access with JWT tokens, return an error if the user is not authorized.
-      """
+      # Validate the users access with JWT tokens, return an error if the user is not authorized.
       conn.request_path == "/login" or conn.request_path == "/login/" ->
         case Users.validate_user(conn) do
           {:ok, jwt, username} ->
