@@ -35,10 +35,10 @@ defmodule GlupWeb.Location.Info do
 
   defp url(ip) do
     access_key = Application.get_env(:glup, :access_key)
-    # move access key to config
     "http://api.ipstack.com/#{ip}?access_key=#{access_key}"
   end
 
+  # manually recieving the IP address of the connected user
   def ip(conn) do
     with %Plug.Conn{remote_ip: remote_ip} <- conn do
       ip = to_string(:inet_parse.ntoa(remote_ip))
