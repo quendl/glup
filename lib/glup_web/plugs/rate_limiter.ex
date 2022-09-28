@@ -4,6 +4,7 @@ defmodule GlupWeb.Plugs.RateLimiter do
   alias GlupWeb.Location.Info
   require Logger
 
+  # two requests / second / IP 
   @limit 2
 
   def init(options), do: options
@@ -16,6 +17,7 @@ defmodule GlupWeb.Plugs.RateLimiter do
         assign(conn, :requests_count, count)
 
       {:deny, _limit} ->
+        # fu'! the logs :x
         Logger.debug("Rate limit exceeded for #{inspect(ip)}")
         error_response(conn)
     end
@@ -25,6 +27,6 @@ defmodule GlupWeb.Plugs.RateLimiter do
     conn
     |> put_status(:service_unavailable)
     |> json(%{message: "service unavailable"})
-    |> halt()
+    |> halt() # stop the connection
   end
 end
