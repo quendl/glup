@@ -7,6 +7,20 @@ defmodule GlupWeb.UserController do
 
   action_fallback GlupWeb.FallbackController
 
+  @moduledoc """
+  The `UserController` is responsible for handling all the requests related to the user.
+
+  - https://hexdocs.pm/phoenix/Phoenix.Controller.html
+
+  => Creating the user
+  => Updating the user
+  => Deleting the user
+  => Fetching the user(s)
+
+  => Logging in the user
+  => SignUp functionality
+  """
+
   @user_topic "user_updates"
 
   def index(conn, _params) do
@@ -14,7 +28,7 @@ defmodule GlupWeb.UserController do
     render(conn, "index.json", user: user)
   end
 
-  # Function to create the user
+  # Create the user (signup, in database)
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Users.create_user(user_params) do
       conn
@@ -24,12 +38,13 @@ defmodule GlupWeb.UserController do
     end
   end
 
+  # Lists the users
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
     render(conn, "show.json", user: user)
   end
 
-  # Function to update the user
+  # Update the users data
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
 
@@ -38,7 +53,7 @@ defmodule GlupWeb.UserController do
     end
   end
 
-  # Function to delete the user
+  # Delete the user from the database
   def delete(conn, %{"id" => id}) do
     user = Users.get_user!(id)
 
@@ -47,7 +62,7 @@ defmodule GlupWeb.UserController do
     end
   end
 
-  # Login functionality is handled here
+  # Handle the login and JWT token assignment
   def login(conn, _params) do
     user_details = conn.assigns.user_details
 
@@ -61,16 +76,15 @@ defmodule GlupWeb.UserController do
     |> render("status.json", %{status_code: "SUCCESS", attribute: "", data: data})
   end
 
-  # Signup functionality is handled here
+  # Signup, what else?!
   def signup(conn, %{"email" => _e, "username" => _u, "password" => pass} = params) do
-    # Fetch in the background
+    # background magic nobody should know about, psst!
     location = Task.async(fn -> GlupWeb.Location.Info.user_location(conn) end)
     signed_pwd = Users.sign_pwd(pass)
     user_params = Map.put(params, "password", signed_pwd)
 
     with {:ok, %User{username: username, email: email} = user} <- Users.create_user(user_params) do
       user = Map.put(user, :location, Task.await(location, :infinity))
-      # Publish event to phoenix pub sub
       PubSub.broadcast(Glup.PubSub, @user_topic, {:created, user})
 
       conn
