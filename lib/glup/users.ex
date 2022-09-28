@@ -125,14 +125,14 @@ defmodule Glup.Users do
     end
   end
 
-  # This function search and return user from the DB
+  # Fetching the users data from the database by their username
   def get_user_from_username(username) do
     username = to_string(username)
     query = from u in User, where: u.username == ^username
     Repo.one(query)
   end
 
-  # This function Signs the pwd
+  # This function signs the pwd
   def sign_pwd(pwd) do
     if to_string(pwd) != "" do
       Pbkdf2.hash_pwd_salt(pwd)
@@ -141,7 +141,7 @@ defmodule Glup.Users do
     end
   end
 
-  # This function generates a JWT
+  # This function generates a JWT with custom expirement
   def create_jwt_token(user_data) do
     unix_now = DateTime.utc_now() |> DateTime.to_unix()
     unix_exp_time = unix_now + 3600
